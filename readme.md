@@ -3,8 +3,13 @@
 This repository contains an Express.js application that provides a single API endpoint. This endpoint accepts two GET request parameters, `slack_name` and `track`, and returns a JSON object containing several data points.
 ### Setup
 Clone the repository to your local machine:
+if you are using https,
 ```
-git clone https://github.com/username/express-api-endpoint.git
+git clone https://github.com/Abdussalam-Mujeeb-ur-rahman/express-api-endpoint.git
+```
+if you are using ssh key, 
+```
+git clone git@github.com:Abdussalam-Mujeeb-ur-rahman/express-api-endpoint.git
 ```
 Navigate into the project directory:
 ```
@@ -28,8 +33,8 @@ The response will be a JSON object in the following format:
    "current_day": "Monday",
    "utc_time": "2023-08-21T15:04:05Z",
    "track": "backend",
-   "github_file_url": "https://github.com/username/express-api-endpoint/blob/main/app.js",
-   "github_repo_url": "https://github.com/username/express-api-endpoint",
+   "github_file_url": "https://github.com/Abdussalam-Mujeeb-ur-rahman/express-api-endpoint/blob/main/index.js",
+   "github_repo_url": "https://github.com/Abdussalam-Mujeeb-ur-rahman/express-api-endpoint",
    "status_code": 200
 }
 ```
@@ -37,4 +42,4 @@ The response will be a JSON object in the following format:
 You can use tools such as Postman or your web browser to test the API endpoint. Make sure the endpoint is accessible and returns the correct data in the correct format.
 
 ### Deployment
-You can deploy the application to a hosting platform like Heroku, AWS, or Google Cloud. Follow the instructions provided by the hosting service to deploy your app.
+You can deploy the application to a hosting platform like Render,Heroku, AWS, or Google Cloud. Follow the instructions provided by the hosting service to deploy your app.

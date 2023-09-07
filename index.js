@@ -17,8 +17,8 @@ app.get('/api', (req, res) => {
     const current_day = moment().utc().format('dddd');
     const utc_time = moment().utc().format();
 
-    const github_file_url = "https://github.com/username/repo/blob/main/app.js"; // replace with your actual GitHub file URL
-    const github_repo_url = "https://github.com/username/repo"; // replace with your actual GitHub repo URL
+    const github_file_url = "https://github.com/Abdussalam-Mujeeb-ur-rahman/express-api-endpoint/blob/main/index.js";
+    const github_repo_url = "https://github.com/Abdussalam-Mujeeb-ur-rahman/express-api-endpoint"; // replace with your actual GitHub repo URL
     const status_code = 200;
 
     const response = {
