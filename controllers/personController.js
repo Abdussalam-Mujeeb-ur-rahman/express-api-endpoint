@@ -8,8 +8,17 @@ const {
   deletePersonByName,
 } = require("../utils/person");
 
+const { validateType } = require("../utils/index");
+
 const addPerson = async (req, res) => {
   try {
+    if (!validateType(req.body.name)) {
+      return res.status(400).json({
+        message:
+          "Name should be a string and should contain 5 or more characters!",
+      });
+    }
+
     if (!req.body.name || req.body.name.length < 5) {
       return res.status(400).json({
         message: "Name is required and should contain 5 or more characters!",
@@ -27,7 +36,7 @@ const addPerson = async (req, res) => {
 
     // Send a successful response
     res.status(201).json({ newPerson });
-    
+
     console.log(`New person created: ${newPerson.name}`);
   } catch (error) {
     console.error("Error in addPerson:", error);
@@ -35,13 +44,12 @@ const addPerson = async (req, res) => {
   }
 };
 
-
 const readPersonById = async (req, res) => {
   try {
     if (!req.params.id) {
       return res.status(400).json({ message: "ID is required" });
     }
-    
+
     const person = await getPersonById(req.params.id);
 
     if (!person) {
@@ -54,7 +62,6 @@ const readPersonById = async (req, res) => {
     res.status(500).json({ message: "An internal server error occurred." });
   }
 };
-
 
 const readPersonByName = async (req, res) => {
   try {
@@ -75,7 +82,6 @@ const readPersonByName = async (req, res) => {
   }
 };
 
-
 const readAllPersons = async (req, res) => {
   const persons = await getAllPersons();
   res.status(200).json({ persons });
@@ -85,6 +91,13 @@ const updatePersonById = async (req, res) => {
   try {
     if (!req.params.id) {
       return res.status(400).json({ message: "ID is required" });
+    }
+
+    if (!validateType(req.body.name)) {
+      return res.status(400).json({
+        message:
+          "Name should be a string and should contain 5 or more characters!",
+      });
     }
 
     const person = await updatePerson(req.params.id, req.body.name);
@@ -99,7 +112,6 @@ const updatePersonById = async (req, res) => {
     res.status(500).json({ message: "An internal server error occurred." });
   }
 };
-
 
 const deletePersonById = async (req, res) => {
   try {
@@ -120,27 +132,26 @@ const deletePersonById = async (req, res) => {
   }
 };
 
-
 const removePersonByName = async (req, res) => {
   try {
     if (!req.query.name) {
       return res
         .status(400)
-        .json({ message: "Name is required! Please pass it as a query parameter." });
+        .json({
+          message: "Name is required! Please pass it as a query parameter.",
+        });
     }
-    
-    const deleted = await deletePersonByName(req.query.name);
-    
 
-      res.status(deleted.status).json({ message: deleted.message });
-    
+    const deleted = await deletePersonByName(req.query.name);
+
+    res.status(deleted.status).json({ message: deleted.message });
+
     console.log(deleted);
   } catch (error) {
     console.error("Error in removePersonByName:", error);
     res.status(500).json({ message: "An internal server error occurred." });
   }
 };
-
 
 module.exports = {
   addPerson,
